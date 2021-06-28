@@ -1,7 +1,7 @@
-## Usage 
+# Usage 
 
 ### timer.vim
-<img src="C:\Users\Siuol\Pictures\timer_example.jpg" style="zoom:50%;" />
+<img src="https://github.com/siuoly/vim-misc/blob/main/image/timer_example.jpg" style="zoom:0%;" />
 
 show `message` after `min` minutes,  
 
@@ -10,6 +10,9 @@ show `message` after `min` minutes,
 show default message after `min` minutes.
 
 > :RemindMessage `min`
+
+
+<hr>
 
 
 ### togglefile.vim
