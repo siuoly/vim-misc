@@ -1,3 +1,7 @@
+" call ToggleFile( <file> )
+" 當前buffer是由此func打開 && 當前tabpage只有唯一window --> 關閉 當前buffer
+" file已在當前tabpage中開啟 && 當前tabpage只有唯一window --> 關閉 file
+" file 不存在於當前tabpage --> 打開file
 
 function! s:openfile( filename)
   exe "vs " .a:filename
@@ -10,16 +14,21 @@ function! s:closefile( filename )
   exe "q"
 endfun
 
+
 function! Togglefile( filename )
- " if current file be opened by toggle(),then close it
-  if exists('b:toggled') 
+ " if current buffer be opened by toggle()
+ " and the window is not the noly in the tabpage ,then close it
+  if exists('b:toggled') && len(tabpagebuflist()) != 1
     call s:closefile('%')
     return
   endif
-  " if file exist in current window
-  if bufwinid( a:filename ) > 0
+  " if file exist in current tabpage
+  " and the file is not only window in the tabpage
+  if bufwinid( a:filename ) > 0 && len(tabpagebuflist())!=1
     call s:closefile( a:filename)
-  else
+    return
+  endif
+  if bufwinid( a:filename ) < 0
     call s:openfile( a:filename)
   endif
 endfun
